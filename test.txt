@@ -1,0 +1,33 @@
+// Create the promisified version of fs.readFile, fs.writeFile and cleanFile
+
+const fs = require('fs')
+
+// function readFile(err, data){
+    
+//     if(err){
+//         console.log('File not found')
+//     } else{
+//         console.log(data);
+//     }
+// }
+
+// fs.readFile('a.txt', 'utf-8', readFile)
+
+
+
+
+function readFilePromisified(file){
+    
+    return new Promise(function(res){
+        fs.readFile(file, 'utf-8', function(err, data){
+            res(data)
+        });
+    });
+}
+
+function read(data){
+    console.log(data)
+}
+
+readFilePromisified('a.txt')
+.then(read)
